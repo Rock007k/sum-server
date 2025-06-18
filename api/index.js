@@ -1,20 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const { createServer } = require('@vercel/node');
 
 const app = express();
 app.use(cors());
 
-const todos = [
-  { id: 1, title: "Todo 1", description: "This is todo 1", completed: false },
-  { id: 2, title: "Todo 2", description: "This is todo 2", completed: false },
-  { id: 3, title: "Todo 3", description: "This is todo 3", completed: false },
-  { id: 4, title: "Todo 4", description: "This is todo 4", completed: false },
-  { id: 5, title: "Todo 5", description: "This is todo 5", completed: false }
-];
-
+// ✅ all your routes here (sum, todos, todo, interest, notifications)
 app.get("/", (req, res) => {
-  res.send("✅ Welcome to the Sum Server API! Endpoints: /sum, /todos, /todo, /interest, /notifications");
+  res.send("✅ Welcome to the Sum Server API! Endpoints: /sum, /todo, /todos, /interest, /notifications");
 });
 
 app.get("/sum", (req, res) => {
@@ -24,37 +16,7 @@ app.get("/sum", (req, res) => {
   res.send(sum.toString());
 });
 
-app.get("/todo", (req, res) => {
-  const todo = todos.find(t => t.id == req.query.id);
-  res.json({ todo });
-});
+// (other routes go here)
 
-app.get("/todos", (req, res) => {
-  const randomTodos = todos.filter(() => Math.random() > 0.5);
-  res.json({ todos: randomTodos });
-});
-
-app.get("/interest", (req, res) => {
-  const principal = parseInt(req.query.principal);
-  const rate = parseInt(req.query.rate);
-  const time = parseInt(req.query.time);
-  const interest = (principal * rate * time) / 100;
-  const total = principal + interest;
-  res.json({ total, interest });
-});
-
-function getRandomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
-app.get("/notifications", (req, res) => {
-  res.json({
-    network: getRandomNumber(10),
-    jobs: getRandomNumber(10),
-    messaging: getRandomNumber(10),
-    notifications: getRandomNumber(10)
-  });
-});
-
-// Export as a Vercel handler
+// ✅ 👇️ this line is essential for serverless
 module.exports = app;
