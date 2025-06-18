@@ -32,6 +32,12 @@ const todos = [{
   completed: false,
 }]
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Sum Server API! Available endpoints: /sum, /todo, /todos, /interest, /notifications");
+});
+
+
 app.get("/todo", (req, res) => {
   const todo = todos.find(t => t.id == req.query.id);
   res.json({
