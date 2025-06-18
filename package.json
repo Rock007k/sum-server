@@ -1,16 +1,13 @@
 {
   "name": "sum-server",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-  "start": "node index.js"
-},
-  "author": "",
+  "main": "api/index.js",
+  "scripts": {},
+  "author": "Gautam Maheshwari",
   "license": "ISC",
-  "description": "",
+  "description": "Simple Express API for sum, todos, interest, and notifications",
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5"
-}
-
+  }
 }
